@@ -69,8 +69,8 @@ $(document).ready(function(){
 //Validates whether a puzzlepiece can be moved
 	function validation (t,l){
 		if (t == emptySpaceTop || l == emptySpaceLeft){			
-			canMove = true;
-			return canMove;
+				canMove = true;
+				return canMove;			
 		}
 		else {
 			canMove = false;
@@ -93,7 +93,11 @@ $(document).ready(function(){
 	$("#puzzlearea div").click(function(){
 		if ($("#puzzlearea div").hasClass("movablepiece")){	
 			var y = this;
-			moveTile(y);			
+			if (Math.abs($(this).top - emptySpaceTop) == 100){			
+			moveTile(y);
+			} else if (Math.abs($(this).left - emptySpaceLeft) == 100){
+				moveTile(y);
+			}
 			$(this).removeClass("movablepiece");
 			haveWon();
 		}		
